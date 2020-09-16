@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TripItAdmin</string>
+    <string name="btnPls">Places</string>
+    <string name="btnGui">Guides</string>
+    <string name="btnShp">Shops</string>
+    <string name="adHome"> Home </string>
+
+    <string-array name = "navigation">
+        <item>Places</item>
+        <item>Guides</item>
+        <item>Shops</item>
+    </string-array>
+</resources>
