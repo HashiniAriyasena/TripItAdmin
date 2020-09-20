@@ -10,12 +10,12 @@
     <ImageView
 
         android:id="@+id/select_guide_image"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/guideprofile"
+        android:layout_width="310dp"
+        android:layout_height="158dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/guideprofile"
 
         />
 
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guide_name"
         android:inputType="textMultiLine"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="6dp"
         android:padding="20dp"
         android:hint="Guide's Telephone Number..."
         android:layout_marginLeft="45dp"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guide_con_number"
         android:inputType="textMultiLine"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="6dp"
         android:padding="20dp"
         android:hint="Guide's Age"
         android:layout_marginLeft="45dp"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/guide_age"
         android:inputType="textMultiLine"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="6dp"
         android:padding="20dp"
         android:hint="Guide's Experiance"
         android:layout_marginLeft="45dp"
@@ -81,7 +81,7 @@
         android:layout_marginLeft="45dp"
         android:layout_marginRight="45dp"
         android:padding="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:textAllCaps="false"
 
