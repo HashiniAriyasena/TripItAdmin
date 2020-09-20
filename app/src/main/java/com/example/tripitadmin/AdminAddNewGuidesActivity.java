@@ -26,6 +26,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class AdminAddNewGuidesActivity extends AppCompatActivity {
 
@@ -202,8 +203,9 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
 
                         if (task.isSuccessful())
                         {
+                            Toast.makeText(AdminAddNewGuidesActivity.this,"got guide's Image Url Successfully..", Toast.LENGTH_SHORT).show();
 
-
+                            SaveGuideInforToDatabase();
                         }
 
                     }
@@ -212,6 +214,22 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void SaveGuideInforToDatabase() {
+
+        HashMap<String, Object> guideMap = new HashMap<>();
+        guideMap.put("gid",GuidesRandomKey);
+        guideMap.put("guidedate",saveGuideCurrentDate);
+        guideMap.put("guidetime",saveGuideCurrentTime);
+        guideMap.put("guidename",GuideName);
+        guideMap.put("guideimage",downloadGuideImageURL);
+        guideMap.put("guidecategory",CategoryGuideName);
+        guideMap.put("guidecontactnum",GcontactNumber);
+        guideMap.put("guideage",Gage);
+        guideMap.put("guideexperiance",Gexperience);
+        guideMap.put("guideamount",Gamount);
 
     }
 
