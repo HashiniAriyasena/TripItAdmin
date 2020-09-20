@@ -5,7 +5,7 @@
     <string name="btnShp">Shops</string>
     <string name="adHome"> Home </string>
 
-    <string-array name = "navigation">
+    <string-array name="navigation">
         <item>Places</item>
         <item>Guides</item>
         <item>Shops</item>

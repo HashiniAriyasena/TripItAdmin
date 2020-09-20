@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminAddNewGuidesActivity">
+
+
+    <ImageView
+
+        android:id="@+id/select_guide_image"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/guideprofile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        />
+
+    <EditText
+        android:id="@+id/guide_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_guide_image"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:hint="Guide's Name.."
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        />
+
+    <EditText
+        android:id="@+id/guide_con_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guide_name"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="25dp"
+        android:padding="20dp"
+        android:hint="Guide's Telephone Number..."
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        />
+
+    <EditText
+        android:id="@+id/guide_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guide_con_number"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="25dp"
+        android:padding="20dp"
+        android:hint="Guide's Age"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        />
+
+    <EditText
+        android:id="@+id/guide_experiance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guide_age"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="25dp"
+        android:padding="20dp"
+        android:hint="Guide's Experiance"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        />
+
+    <Button
+
+        android:id="@+id/add_new_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guide_experiance"
+        android:text="Add Guide"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:padding="20dp"
+        android:layout_marginTop="50dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+
+
+
+        />
+
+
+
+
+</RelativeLayout>

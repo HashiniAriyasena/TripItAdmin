@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminGuideCategoryActivity">
+
+    <TextView
+        android:id="@+id/guides_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="Add New Guide"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        />
+
+
+    <LinearLayout
+
+        android:id="@+id/liner_Guidecategory_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/guides_category"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="45dp"
+        >
+
+        <ImageView
+            android:id="@+id/withVehicals"
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/guidewithvehical"></ImageView>
+
+        <ImageView
+            android:id="@+id/withOutVehicals"
+            android:layout_width="163dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/man"></ImageView>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
