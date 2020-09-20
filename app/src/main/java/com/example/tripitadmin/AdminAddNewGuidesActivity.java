@@ -1,5 +1,6 @@
 package com.example.tripitadmin;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,14 +14,29 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class AdminAddNewGuidesActivity extends AppCompatActivity {
 
-    private String  CategoryGuideName, GuideName ,GcontactNumber, Gage, Gexperience;
+    private String  CategoryGuideName, GuideName ,GcontactNumber, Gage, Gexperience , Gamount, saveGuideCurrentDate, saveGuideCurrentTime;
     private Button  AddNewGuideButton;
     private ImageView InputGuideImage;
-    private EditText InputGuideName, InputGuideConNumber, InputGuideAge, InputExperience;
+    private EditText InputGuideName, InputGuideConNumber, InputGuideAge, InputExperience ,InputAmount;
     private static final int GalleryGuidePick = 1 ;
     private Uri ImageGuideUri;
+    private String GuidesRandomKey , downloadGuideImageURL;
+    private StorageReference GuidesImagesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +45,7 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
 
 
         CategoryGuideName= getIntent().getExtras().get("categoryGuide").toString();
+        GuidesImagesRef = FirebaseStorage.getInstance().getReference().child("Guide Images");
 
         AddNewGuideButton = (Button) findViewById(R.id.add_new_guide);
         InputGuideImage   = (ImageView) findViewById(R.id.select_guide_image);
@@ -36,6 +53,8 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
         InputGuideConNumber=(EditText) findViewById(R.id.guide_con_number);
         InputGuideAge = (EditText) findViewById(R.id.guide_age);
         InputExperience = (EditText) findViewById(R.id.guide_experiance);
+        InputAmount = (EditText) findViewById(R.id.guide_amount);
+
 
         InputGuideImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +108,7 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
         GcontactNumber = InputGuideConNumber.getText().toString();
         Gage = InputGuideAge.getText().toString();
         Gexperience = InputExperience.getText().toString();
+        Gamount = InputAmount.getText().toString();
 
         if (ImageGuideUri == null)
         {
@@ -114,6 +134,11 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
             Toast.makeText(this,"Please enter guide's experiance...",Toast.LENGTH_SHORT).show();
 
         }
+        else if (TextUtils.isEmpty(Gamount))
+        {
+            Toast.makeText(this,"Please enter amount per-day",Toast.LENGTH_SHORT).show();
+
+        }
         else{
 
             StoreGuideInformation();
@@ -123,6 +148,71 @@ public class AdminAddNewGuidesActivity extends AppCompatActivity {
     }
 
     private void StoreGuideInformation() {
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveGuideCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTim = new SimpleDateFormat("HH:mm:ss a");
+        saveGuideCurrentTime = currentDate.format(calendar.getTime());
+
+
+        GuidesRandomKey = saveGuideCurrentDate + saveGuideCurrentTime;
+
+
+        final StorageReference filePath = GuidesImagesRef.child(ImageGuideUri.getLastPathSegment() + GuidesRandomKey + ".jpg");
+
+        final UploadTask uploadTask = filePath.putFile(ImageGuideUri);
+
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e)
+            {
+
+                String massage = e.toString();
+                Toast.makeText(AdminAddNewGuidesActivity.this,"Error: " + massage, Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+            {
+                Toast.makeText(AdminAddNewGuidesActivity.this,"Guide's Image Uploadd Succssfully...", Toast.LENGTH_SHORT).show();
+
+                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception
+                    {
+                        if(!task.isSuccessful())
+                        {
+
+                            throw task.getException();
+
+                        }
+
+                            downloadGuideImageURL = filePath.getDownloadUrl().toString();
+                            return filePath.getDownloadUrl();
+
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task)
+                    {
+
+                        if (task.isSuccessful())
+                        {
+
+
+                        }
+
+                    }
+                });
+
+            }
+        });
+
+
     }
 
 
